@@ -14,19 +14,21 @@ class ViewController: BaseViewController {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var nameTF: UITextField!
     
+    let dataFetcherService: DataFetcherServiceProtocol = DataFetcherService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         saveBtn.layer.cornerRadius = saveBtn.frame.width / 2
         
-        NetworkDataFetcher.shared.fetchFreeGames() { appGroup in
+        dataFetcherService.fetchFreeGames() { appGroup in
             print(appGroup)
         }
-        NetworkDataFetcher.shared.fetchPaidGames() { appGroup in
-            print(appGroup)
-        }
-        NetworkDataFetcher.shared.fetchCountries() { countries in
-            print(countries)
-        }
+//        dataFetcherService.fetchPaidGames() { appGroup in
+//            print(appGroup)
+//        }
+//        dataFetcherService.fetchCountry() { countries in
+//            print(countries)
+//        }
     }
 
     @IBAction func saveBtnAction() {

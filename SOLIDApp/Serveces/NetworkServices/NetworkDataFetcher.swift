@@ -7,39 +7,53 @@
 
 import Foundation
 
+// MARK: - DataFetcher
+
+protocol DataFetcher {
+    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void)
+}
+
 // MARK: - NetworkDataFetcher
 
-class NetworkDataFetcher {
-
-    static let shared = NetworkDataFetcher()
-    private init(networkServices: NetworkServiceProtocol = NetworkService()) {
+class NetworkDataFetcher: DataFetcher {
+    
+    init(networkServices: NetworkServiceProtocol = NetworkService()) {
         self.networkServices = networkServices
     }
 
     var networkServices: NetworkServiceProtocol
+    
+    // MARK: Internal
 
-    func fetchPaidGames(completion: @escaping (AppGroup?) -> Void) {
-        networkServices.request(urlString: Constants.urlPaidGames.rawValue) { data, error in
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            let appGroup = try? decoder.decode(AppGroup.self, from: data)
-            completion(appGroup)
+    // Когда будем вызывать, ф-я будет требовать возвращать обьект подписанный под Decodable
+    // Что бы закрыь метод для модификации используем протоколы
+    // Пробуем теперь удалить ф-ю / изменить параметры)
+    func fetchGenericJSONData<T: Decodable>(urlString: String,
+                                            response: @escaping (T?) -> Void) {
+        print("fetchGenericJSONData: T.self: \(T.self)")
+        networkServices.request(urlString: urlString) { data, error in
+            if let error = error {
+                print("Error received requesting data: \(error.localizedDescription)")
+                response(nil)
+            }
+            let decoded = self.decodeJSON(type: T.self, data: data)
+            response(decoded)
         }
     }
-    func fetchFreeGames(completion: @escaping (AppGroup?) -> Void) {
-        networkServices.request(urlString: Constants.urlFreeGames.rawValue) { data, error in
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            let appGroup = try? decoder.decode(AppGroup.self, from: data)
-            completion(appGroup)
-        }
-    }
-    func fetchCountries(completion: @escaping ([Country]?) -> Void) {
-        networkServices.request(urlString: Constants.urlString.rawValue) { data, error in
-            let decoder = JSONDecoder()
-            guard let data = data else { return }
-            let countries = try? decoder.decode([Country].self, from: data)
-            completion(countries)
+
+    // MARK: Private
+
+    // Декодирование Data в любую модель
+    func decodeJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
+
+        let decoder = JSONDecoder()
+        guard let data = data else { return nil }
+        do {
+            let objects = try decoder.decode(type.self, from: data)
+            return objects
+        } catch let jsonError {
+            print("Failed to decode JSON", jsonError)
+            return nil
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D08736E28369724000B4A76 /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08736D28369724000B4A76 /* DataFetcherService.swift */; };
 		2DE58F382832BBD800592B56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE58F372832BBD800592B56 /* AppDelegate.swift */; };
 		2DE58F3A2832BBD800592B56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE58F392832BBD800592B56 /* SceneDelegate.swift */; };
 		2DE58F3C2832BBD800592B56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE58F3B2832BBD800592B56 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D08736D28369724000B4A76 /* DataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherService.swift; sourceTree = "<group>"; };
 		2DE58F342832BBD800592B56 /* SOLIDApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOLIDApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DE58F372832BBD800592B56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DE58F392832BBD800592B56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		2DE58F5C2832D38400592B56 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				2D08736D28369724000B4A76 /* DataFetcherService.swift */,
 				2DE58F5D2832D3B400592B56 /* NetworkDataFetcher.swift */,
 				2DE58F582832CB0C00592B56 /* NetworkService.swift */,
 			);
@@ -212,6 +215,7 @@
 				2DE58F542832C62100592B56 /* DataStore.swift in Sources */,
 				2DE58F4F2832C3D400592B56 /* BaseViewController.swift in Sources */,
 				2DE58F5E2832D3B400592B56 /* NetworkDataFetcher.swift in Sources */,
+				2D08736E28369724000B4A76 /* DataFetcherService.swift in Sources */,
 				2DE58F522832C5A100592B56 /* ValidateService.swift in Sources */,
 				2DE58F592832CB0C00592B56 /* NetworkService.swift in Sources */,
 				2DE58F382832BBD800592B56 /* AppDelegate.swift in Sources */,
