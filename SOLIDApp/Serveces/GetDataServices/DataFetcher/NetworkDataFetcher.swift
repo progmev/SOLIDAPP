@@ -13,6 +13,10 @@ protocol DataFetcher {
     func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void)
 }
 
+/*
+ NetworkDataFetcher - модуль нижнего уровния для DataFetcherService
+ NetworkDataFetcher - модуль верхнего уровния для NetworkServiceProtocol
+ */
 // MARK: - NetworkDataFetcher
 
 class NetworkDataFetcher: DataFetcher {

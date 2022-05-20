@@ -20,15 +20,19 @@ class ViewController: BaseViewController {
         super.viewDidLoad()
         saveBtn.layer.cornerRadius = saveBtn.frame.width / 2
         
-        dataFetcherService.fetchFreeGames() { appGroup in
-            print(appGroup)
-        }
+//        dataFetcherService.fetchFreeGames() { appGroup in
+//            print(appGroup)
+//        }
 //        dataFetcherService.fetchPaidGames() { appGroup in
 //            print(appGroup)
 //        }
-//        dataFetcherService.fetchCountry() { countries in
-//            print(countries)
-//        }
+        dataFetcherService.fetchCountry() { countries in
+            print(countries)
+        }
+        
+        dataFetcherService.fetchLocalCountry() { countries in
+            print(countries)
+        }
     }
 
     @IBAction func saveBtnAction() {

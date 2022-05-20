@@ -16,6 +16,9 @@ protocol NetworkServiceProtocol {
 
 // MARK: - NetworkService
 
+/*
+ NetworkService - модуль нижнего уровния для NetworkDataFetcher
+ */
 final class NetworkService: NetworkServiceProtocol {
     
     public func request(urlString: String, completion: @escaping (Data?, Error?) -> Void) {
